@@ -1,7 +1,8 @@
-package com.example.demo;
+package com.example.demo.entity;
+
+import com.example.demo.entity.Profesor;
 
 import javax.persistence.*;
-import java.util.Locale;
 
 
 @Entity (name = "Student")
@@ -51,17 +52,25 @@ public class Student{
             nullable = false
     )
     private Integer age;
+    @ManyToOne ()
+    @JoinColumn (
+            name = "prof_id"
+    )
+    private Profesor profesor;
+
 
     public Student(
                    String firstName,
                    String lastName,
                    String email,
-                   Integer age) {
-        this.id = id;
+                   Integer age
+                 ) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.age = age;
+
+
     }
 
     public Student() {
@@ -106,6 +115,14 @@ public class Student{
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public Profesor getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
     }
 
     @Override
